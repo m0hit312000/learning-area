@@ -12,5 +12,100 @@
 
     <script>
 
+    // const person = {
+    //   name: ['Bob','Smith'],
+    //   age: 32,
+    //   gender: 'male',
+    //   interests: ['music','skiing'],
+    //   bio: function(){
+    //     alert(this.name[0]+' '+this.name[1]+' is'+this.age+' years old. He likes '+this.interests[0]+' and'+this.interests[1]);
+    //   },
+      
+      
+    // };
+
+    // person.prototype.greeting = function(){
+    //     alert('Hi! I\'m '+this.name[0]+'.');
+    // } 
+  
+    function Person(first, last, age, gender, interests) {
+  this.name = {
+    first,
+    last
+  };
+  this.age = age;
+  this.gender = gender;
+  this.interests = interests;
+};
+
+Person.prototype.greeting = function() {
+  alert('Hi! I\'m ' + this.name.first + '.');
+};
+
+
+function Teacher(first, last, age, gender, interests,subject)
+{
+  Person.call(this,first, last, age, gender, interests);
+  this.subject = subject;
+}
+Teacher.prototype = Object.create(Person.prototype);
+
+
+// Object.defineProperty(Teacher.prototype, 'constructor', { 
+//     value: Teacher, 
+//     enumerable: false, // so that it does not appear in 'for in' loop
+//     writable: true });  or you can write
+
+Teacher.prototype.constructor = Teacher;
+
+
+    Teacher.prototype.greeting = function() {
+  let prefix;
+
+  if (this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
+    prefix = 'Mr.';
+  } else if (this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') {
+    prefix = 'Ms.';
+  } else {
+    prefix = 'Mx.';
+  }
+
+  alert('Hello. My name is ' + prefix + ' ' + this.name.last + ', and I teach ' + this.subject + '.');
+};
+
+let teacher1 = new Teacher('Dave', 'Griffiths', 31, 'male', ['football', 'cookery'], 'mathematics');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    // const Not = new Notification('Hello!');
+
+    // let band = {
+    //   name: 'The Local Train',
+    //   nationality: 'Indian',
+    //   genre: 'Pop',
+    //   member: 4,
+    //   formed: 2015,
+    //   split: false,
+    //   albums: [{name:'choo lo',released:2015},{name:'Dil Mere' ,released:2015}]
+    // };
+
     </script>
 </html>
